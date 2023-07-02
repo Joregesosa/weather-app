@@ -7,6 +7,7 @@ function WeatherForecastDays({
     min_c,
     max_c,
     icon,
+    isCelcius
 }) {
     return (
 
@@ -24,9 +25,9 @@ function WeatherForecastDays({
 
             <div className=" flex gap-2 mt-2">
 
-                <p >{max_c}{''}</p>
+                <p >{isCelcius? max_c:max_f}</p>
 
-                <p className="text-[#A09FB1]">{min_c}{''}</p>
+                <p className="text-[#A09FB1]">{isCelcius? min_c:min_f}</p>
 
             </div>
 

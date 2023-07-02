@@ -89,7 +89,7 @@ export const useWeather = () => {
         try {
 
             const ipLocation = await getLocationByIp();
-            return ipLocation;
+        
             const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${ipLocation.lat}&lon=${ipLocation.long}&appid=3bc4c9f45cf04e7a74ac17d51146bf82&exclude=minutely,hourly,alerts&units=imperial`);
 
             const jsonResponse = await response.json()

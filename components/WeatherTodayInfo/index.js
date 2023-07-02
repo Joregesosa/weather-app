@@ -18,10 +18,11 @@ function WeatherTodayInfo(
             <div className="flex flex-col items-center justify-center w-full h-[45%] relative overflow-hidden">
 
 
-                <Image className="w-full h-full object-cover opacity-5" src={'/others/Cloud-background.png'} alt={'nubes bg'} width={600} height={600} />
+                <Image className="w-full h-full object-cover opacity-5" src={'/others/Cloud-background.png'} alt={'nubes bg'} width={600} height={600} priority />
 
                 <div className="flex items-center justify-center w-2/5 absolute">
-                    <Image className=" w-full object-contain" src={`/weather/${icon}.png`} width={300} height={300} alt={condition} />
+                    
+                    <Image className=" w-full object-contain" src={`/weather/${icon}.png`} width={300} height={300} alt={'condition'} />
 
                 </div>
 

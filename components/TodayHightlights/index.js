@@ -34,10 +34,10 @@ function TodayHightlights({
 
                     </div>
 
-                    <div className="currentWeather__windStatus_direction">
+                    <div className="flex items-center text-[#E7E7EB] text-sm">
 
                         <span className="flex justify-center items-center w-8 h-8 m-3 rounded-full bg-[#ffffff4d]" >
-                            <Image style={{ rotate: `${windDirection}deg` }} src={'/navigation.svg'} width={18} height={18} />
+                            <Image style={{ rotate: `${windDirection}deg` }} src={'/navigation.svg'} width={18} height={18} alt="Navigation Icon"/>
                         </span>
 
                         {windDirString}
