@@ -10,7 +10,7 @@ export const useWeather = () => {
 
 
     const appid = '3bc4c9f45cf04e7a74ac17d51146bf82';
-    const baseUrl = 'http://api.openweathermap.org';
+    const baseUrl = 'https://api.openweathermap.org';
     const units = 'imperial';
     const exclude = 'minutely,hourly,alerts';
 
