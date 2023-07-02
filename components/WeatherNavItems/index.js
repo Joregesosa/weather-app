@@ -13,7 +13,7 @@ function WeatherNavItems({
 
     return (
         <li
-            className="flex justify-between w-[70%] max-w-367px h-14   pl-2 text-base font-medium cursor-pointer text-[#E7E7EB] hover:border border-[#616475] mt-6 hover:after:content-['>'] hover:after:text-lg hover:after:text-[#616475] hover: hover:after:flex after:mt-3 hover:after:font-bold hover:after:mr-7"
+            className="flex justify-between w-[70%] max-w-367px h-14   pl-2 text-base font-medium cursor-pointer text-[#E7E7EB] hover:border border-[#616475] mt-6  hover:after:bg-arrow-bg hover:after:bg-contain hover:after:bg-no-repeat hover:after:p-2 hover:after:mt-5 hover:after:mr-5"
             onClick={() => getCityWeather(lat, lon, city)}
         >
 

@@ -14,11 +14,7 @@ import { WeatherHeader } from '@/components/WeatherHeader'
 import { WeatherTodayInfo } from '@/components/WeatherTodayInfo'
 import { RightSide } from '@/components/rightSide'
 import { useWeather } from '@/hooks/useWeather'
-// import { useChanges } from '@/hooks/useChanges'
 
-// const { getData, } = useWeather();
-
-// const weatherPromise = getData();
 
 export default function Home() {
 
@@ -95,7 +91,7 @@ export default function Home() {
             humidity={weather.current.humidity}
             windDirString={weather.current.windDirString}
             windDirection={weather.current.windDirection}
-            isCelcius = {isCelcius}
+            isCelcius={isCelcius}
           />)}
 
 
@@ -109,20 +105,20 @@ export default function Home() {
               getCities={getCities}
             />
 
-             <WeatherNavList>
-             {cities && cities.map((city, i) => (
+            <WeatherNavList>
+              {cities && cities.map((city, i) => (
                 <WeatherNavItems
                   key={i}
                   country={city.country}
                   city={city.name}
-                  lat ={city.lat}
-                  lon = {city.lon}
-                  getCityWeather = {getCityWeather}
+                  lat={city.lat}
+                  lon={city.lon}
+                  getCityWeather={getCityWeather}
                 />
               ))}
 
 
-            </WeatherNavList> 
+            </WeatherNavList>
 
           </WeatherNavContainer>
 
