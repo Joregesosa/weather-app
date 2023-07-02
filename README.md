@@ -8,7 +8,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://weather-app.vercel.app/">
+    <a href="https://weather-app-tan-pi-94.vercel.app/">
       Demo
     </a>
     <span> | </span>
@@ -37,9 +37,9 @@
 
 ## Overview
 
-![screenshot](public/icons/others/WeatherApp.png)
+![screenshot](public/others/WeatherApp.png)
 
-you can see the demo in https://weather-app.vercel.app
+you can see the demo in https://weather-app-tan-pi-94.vercel.app/
 
 La app del clima es un reto de DevChallenges encargado por la institucion Funval como proyecto final del segundo nivel del curso Full Stack Web Developer. 
 
