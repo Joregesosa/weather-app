@@ -3,7 +3,7 @@ import React from "react";
 
 function WeatherNavList(props) {
     return (
-        <ul className="flex flex-col items-center w-full h-full mt-80px">
+        <ul className="flex flex-col items-center w-full h-fit mt-80px pb-5">
 
             {props.children}
 

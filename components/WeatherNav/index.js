@@ -1,12 +1,9 @@
 import React from "react";
 import Image from "next/image";
-// import './WeatherNav.css';
 
-function WeatherNav({setIsNavOpen}) {
-   
+function WeatherNav({ setIsNavOpen, getCities }) {
+
     const [searchLocationVal, setSearchLocationVal] = React.useState('');
-
-    const url = `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=YgPYWjsPMRNWaSXDVPH6KqifZVdRLVH9&q=${searchLocationVal}`
 
     const onChangeSearchLocation = (event) => {
 
@@ -18,7 +15,7 @@ function WeatherNav({setIsNavOpen}) {
         <nav className="w-full h-24 flex items-end justify-around">
 
             <span className="absolute right-10 top-6 cursor-pointer"
-                onClick={() => {  setIsNavOpen(false) }}>
+                onClick={() => { setIsNavOpen(false) }}>
 
                 <Image className=" hover:w-7 hover:h-7" src="/close.svg" width={25} height={25} alt="close icon" />
             </span>
@@ -39,7 +36,7 @@ function WeatherNav({setIsNavOpen}) {
             </div>
 
             <button className=" w-20 h-9 bg-[#3C47E9] px-1 font-semibold text-base text-[#E7E7EB] hover:text-[#def341]"
-                onClick={() => props.getLocationInfo(url)}>
+                onClick={() => getCities(searchLocationVal.toLocaleLowerCase())}>
 
                 Search
 

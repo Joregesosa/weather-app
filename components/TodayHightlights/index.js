@@ -1,12 +1,15 @@
 import React from "react";
 import Image from "next/image";
 function TodayHightlights({
-    windSpeed,
-    visivility,
     pressure,
     humidity,
     windDirString,
-    windDirection
+    windDirection,
+    isCelcius,
+    windSpeed_mph,
+    windSpeed_ms,
+    visivility_m,
+    visivility_k,
 }) {
 
     return (
@@ -28,16 +31,16 @@ function TodayHightlights({
 
                     <div className="flex items-end h-20 mb-4">
 
-                        <h3 className="text-[#E7E7EB] text-6xl font-bold">{windSpeed}</h3>
+                        <h3 className="text-[#E7E7EB] text-6xl font-bold">{isCelcius ? windSpeed_ms : windSpeed_mph}</h3>
 
-                        <h4 className="text-[#E7E7EB] text-4xl mb-2 ml-1">mph</h4>
+                        <h4 className="text-[#E7E7EB] text-4xl mb-2 ml-1">{isCelcius ? 'ms' : 'mph'}</h4>
 
                     </div>
 
                     <div className="flex items-center text-[#E7E7EB] text-sm">
 
                         <span className="flex justify-center items-center w-8 h-8 m-3 rounded-full bg-[#ffffff4d]" >
-                            <Image style={{ rotate: `${windDirection}deg` }} src={'/navigation.svg'} width={18} height={18} alt="Navigation Icon"/>
+                            <Image style={{ rotate: `${windDirection}deg` }} src={'/navigation.svg'} width={18} height={18} alt="Navigation Icon" />
                         </span>
 
                         {windDirString}
@@ -86,8 +89,8 @@ function TodayHightlights({
                     </h2>
 
                     <div className="flex items-end h-20 mb-4">
-                        <h3 className="text-[#E7E7EB] text-6xl font-bold">{visivility}</h3>
-                        <h4 className="text-[#E7E7EB] text-4xl mb-2 ml-1">miles</h4>
+                        <h3 className="text-[#E7E7EB] text-6xl font-bold">{isCelcius ? visivility_k : visivility_m}</h3>
+                        <h4 className="text-[#E7E7EB] text-4xl mb-2 ml-1">{isCelcius ? 'km' : 'miles'}</h4>
                     </div>
 
 

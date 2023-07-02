@@ -1,5 +1,5 @@
 'use client'
-import React, { Fragment, use } from 'react'
+import React, { Fragment } from 'react'
 import WeatherContainer from '@/components/WeatherContainer'
 import { WeatherNavContainer } from '@/components/WeatherNavContainer'
 import { WeatherNav } from '@/components/WeatherNav'
@@ -14,11 +14,11 @@ import { WeatherHeader } from '@/components/WeatherHeader'
 import { WeatherTodayInfo } from '@/components/WeatherTodayInfo'
 import { RightSide } from '@/components/rightSide'
 import { useWeather } from '@/hooks/useWeather'
-import { useChanges } from '@/hooks/useChanges'
+// import { useChanges } from '@/hooks/useChanges'
 
-const { getData, } = useWeather();
+// const { getData, } = useWeather();
 
-const weatherPromise = getData();
+// const weatherPromise = getData();
 
 export default function Home() {
 
@@ -27,10 +27,13 @@ export default function Home() {
     setIsNavOpen,
     isCelcius,
     setIsCelcius,
-  }
-    = useChanges();
-
-  const weather = use(weatherPromise);
+    loading,
+    weather,
+    getAccurateWeather,
+    getCities,
+    cities,
+    getCityWeather
+  } = useWeather();
 
 
   return (
@@ -42,9 +45,10 @@ export default function Home() {
 
           <WeatherHeader
             setIsNavOpen={setIsNavOpen}
+            getAccurateWeather={() => { getAccurateWeather() }}
           />
 
-          {weather && (<WeatherTodayInfo
+          {!loading && (<WeatherTodayInfo
             date={weather.current.date}
             icon={weather.current.icon}
             temp_c={weather.current.temp_c}
@@ -66,7 +70,7 @@ export default function Home() {
           <WeatherForecast>
 
 
-            {weather && weather.forecast.map((day) => (
+            {!loading && weather.forecast.map((day) => (
               <WeatherForecastDays
                 key={day.date}
                 date={day.date}
@@ -82,13 +86,16 @@ export default function Home() {
 
           </WeatherForecast>
 
-          {weather && (<TodayHightlights
-            windSpeed={weather.current.windSpeed}
-            visivility={weather.current.visivility}
+          {!loading && (<TodayHightlights
+            windSpeed_mph={weather.current.windSpeed_mph}
+            windSpeed_ms={weather.current.windSpeed_ms}
+            visivility_m={weather.current.visivility_m}
+            visivility_k={weather.current.visivility_k}
             pressure={weather.current.pressure}
             humidity={weather.current.humidity}
             windDirString={weather.current.windDirString}
             windDirection={weather.current.windDirection}
+            isCelcius = {isCelcius}
           />)}
 
 
@@ -99,13 +106,23 @@ export default function Home() {
 
             <WeatherNav
               setIsNavOpen={setIsNavOpen}
+              getCities={getCities}
             />
 
-            <WeatherNavList>
+             <WeatherNavList>
+             {cities && cities.map((city, i) => (
+                <WeatherNavItems
+                  key={i}
+                  country={city.country}
+                  city={city.name}
+                  lat ={city.lat}
+                  lon = {city.lon}
+                  getCityWeather = {getCityWeather}
+                />
+              ))}
 
-              <WeatherNavItems />
 
-            </WeatherNavList>
+            </WeatherNavList> 
 
           </WeatherNavContainer>
 
