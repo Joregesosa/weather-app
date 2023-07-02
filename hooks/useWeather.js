@@ -1,6 +1,5 @@
-// import React, { useState, useEffect } from "react";
-const useWeather = () => {
-
+ 
+export const useWeather = () => {
 
     const dateFormat = (date) => {
         const options = { weekday: 'short', day: 'numeric', month: 'short' };
@@ -65,7 +64,6 @@ const useWeather = () => {
 
         return temp_c;
     }
-
     const getLocationByIp = async () => {
         try {
 
@@ -76,7 +74,7 @@ const useWeather = () => {
             const city = results.city
             const lat = (results.loc).split(',')[0]
             const long = (results.loc).split(',')[1]
-            // getWeatherData(locationName);
+
             return { lat, long, city };
 
 
@@ -88,54 +86,64 @@ const useWeather = () => {
 
     const getData = async () => {
 
-        const ipLocation = await getLocationByIp();
+        try {
+
+            const ipLocation = await getLocationByIp();
+            return ipLocation;
+            const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${ipLocation.lat}&lon=${ipLocation.long}&appid=3bc4c9f45cf04e7a74ac17d51146bf82&exclude=minutely,hourly,alerts&units=imperial`);
+
+            const jsonResponse = await response.json()
 
 
-        const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${ipLocation.lat}&lon=${ipLocation.long}&appid=3bc4c9f45cf04e7a74ac17d51146bf82&exclude=minutely,hourly,alerts&units=imperial`);
+            const current = {
+                date: dateFormat(jsonResponse.current.dt * 1000),
+                location: ipLocation.city,
+                icon: jsonResponse.current.weather[0].icon,
+                temp_f: parseInt(jsonResponse.current.temp),
+                temp_c: changeTempUnit(jsonResponse.current.temp),
+                condition: jsonResponse.current.weather[0].description,
+                windDirection: jsonResponse.current.wind_deg,
+                windDirString: windDireccion(jsonResponse.current.wind_deg),
+                windSpeed: jsonResponse.current.wind_speed,
+                visivility: jsonResponse.current.visibility,
+                pressure: jsonResponse.current.pressure,
+                humidity: jsonResponse.current.humidity
+            }
 
-        const jsonResponse = await response.json()
+            const forecast = [];
+
+            for (let i = 0; i < (jsonResponse.daily.length - 3); i++) {
+                forecast.push(
+                    {
+                        date: i === 0 ? 'Tomorrow' : dateFormat(jsonResponse.daily[i].dt * 1000),
+                        min_f: parseInt(jsonResponse.daily[i].temp.min) + '°f',
+                        max_f: parseInt(jsonResponse.daily[i].temp.max) + '°f',
+                        min_c: changeTempUnit(jsonResponse.daily[i].temp.min) + '°C',
+                        max_c: changeTempUnit(jsonResponse.daily[i].temp.max) + '°C',
+                        icon: jsonResponse.daily[i].weather[0].icon
+                    })
+
+            }
+
+            return { current, forecast };
 
 
-        const current = {
-            date: dateFormat(jsonResponse.current.dt * 1000),
-            location: ipLocation.city,
-            icon: jsonResponse.current.weather[0].icon,
-            temp_f: parseInt(jsonResponse.current.temp),
-            temp_c: changeTempUnit(jsonResponse.current.temp),
-            condition: jsonResponse.current.weather[0].description,
-            windDirection: jsonResponse.current.wind_deg,
-            windDirString: windDireccion(jsonResponse.current.wind_deg),
-            windSpeed: jsonResponse.current.wind_speed,
-            visivility: jsonResponse.current.visibility,
-            pressure: jsonResponse.current.pressure,
-            humidity: jsonResponse.current.humidity
-        }
+        } catch (error) {
 
-        const forecast = [];
+            return error;
 
-        for (let i = 0; i < (jsonResponse.daily.length - 3); i++) {
-            forecast.push(
-                {
-                    date: dateFormat(jsonResponse.daily[i].dt * 1000),
-                    min_f: parseInt(jsonResponse.daily[i].temp.min) + '°f',
-                    max_f: parseInt(jsonResponse.daily[i].temp.max) + '°f',
-                    min_c: changeTempUnit(jsonResponse.daily[i].temp.min) + '°C',
-                    max_c: changeTempUnit(jsonResponse.daily[i].temp.max) + '°C',
-                    icon: jsonResponse.daily[i].weather[0].icon
-                })
-
-        }
-        // console.log(forecast);
-
-        return { current, forecast };
+        }  
 
     }
 
+
     return {
-        getData
+
+        getData,
+   
     }
 
 
 }
 
-export default useWeather
+// export default useWeather

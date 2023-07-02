@@ -1,19 +1,19 @@
 
 import React from "react";
-import './WeatherNavItems.css';
+// import './WeatherNavItems.css';
 
-function WeatherNavItems(props) {
-    const locationName = props.city + ',' + props.country;
+function WeatherNavItems({city,country }) {
+    const locationName = city + ',' + country;
 
     return (
         <li
-            className="wheather__nav_item"
-            onClick={() => props.getWeatherData(locationName)}
+            className="flex justify-between w-[70%] max-w-367px h-14   pl-2 text-base font-semibold cursor-pointer text-[#E7E7EB] hover:border border-[#616475] mt-6 hover:after:content-['>'] hover:after:text-lg hover:after:text-[#616475] hover: hover:after:flex after:mt-3 hover:after:font-bold hover:after:mr-7"
+            onClick={() => getWeatherData(locationName)}
         >
 
-            <p className="wheather__nav_itemContent">
+            <p className="flex items-center text-lg ml-2">
 
-                {props.city},&nbsp;&nbsp;&nbsp;&nbsp;{props.country}
+                {'city'},&nbsp;&nbsp;&nbsp;&nbsp;{'country'}
 
             </p>
 

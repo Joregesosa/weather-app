@@ -1,9 +1,9 @@
 import React from "react";
-import './WheatherNavList.css';
+
 
 function WeatherNavList(props) {
     return (
-        <ul className="weather__nav_list">
+        <ul className="flex flex-col items-center w-full h-full mt-80px">
 
             {props.children}
 

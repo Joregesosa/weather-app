@@ -1,9 +1,9 @@
 import React from "react";
-import './WeatherNavContainer.css';
-function WeatherNavContainer(props) {
+
+function WeatherNavContainer({children}) {
     return (
-        <section className="weatherNav_container">
-            {props.children}
+        <section className="w-screen h-screen max-h-screen bg-[#1E213A] absolute top-0 left-0 md:w-[30vw] md:min-w-[380px]">
+            {children}
         </section>
     )
 }

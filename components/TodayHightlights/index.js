@@ -1,5 +1,4 @@
 import React from "react";
-import './TodayHightlights.css';
 import Image from "next/image";
 function TodayHightlights({
     windSpeed,
