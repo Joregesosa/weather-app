@@ -145,16 +145,19 @@ export const useWeather = () => {
 
     // get cities by name 
     const getCities = async (city) => {
-        try {
-            const response = await fetch(`${baseUrl}/geo/1.0/direct?q=${city}&limit=3&appid=${appid}`)
+        if (city) {
+            try {
+                const response = await fetch(`${baseUrl}/geo/1.0/direct?q=${city}&limit=3&appid=${appid}`)
 
-            const jsonResponse = await response.json();
+                const jsonResponse = await response.json();
 
-            setCities(jsonResponse);
+                setCities(jsonResponse);
 
-        } catch (error) {
-            console.log(error)
+            } catch (error) {
+                console.log(error)
+            }
         }
+
 
     }
 
