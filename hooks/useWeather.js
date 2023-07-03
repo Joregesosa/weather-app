@@ -183,8 +183,8 @@ export const useWeather = () => {
                 windDirString: windDireccion(jsonResponse.current.wind_deg),
                 windSpeed_mph: jsonResponse.current.wind_speed,
                 windSpeed_ms: (jsonResponse.current.wind_speed * 0.44704).toFixed(2),
-                visivility_m: jsonResponse.current.visibility,
-                visivility_k: (jsonResponse.current.visibility * 1.60934).toFixed(2),
+                visivility_m: (jsonResponse.current.visibility / 1609).toFixed(2),
+                visivility_k: (jsonResponse.current.visibility / 1000).toFixed(2),
                 pressure: jsonResponse.current.pressure,
                 humidity: jsonResponse.current.humidity
             }
