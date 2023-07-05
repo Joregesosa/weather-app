@@ -16,7 +16,7 @@ function TodayHightlights({
 
         <div className=" w-full max-w-sm px-5 mt-12 md:w-full md:max-w-none md:m-auto md:flex md:flex-col md:items-center md:justify-center ">
 
-            <h2 className=" h-7 text-[#E7E7EB] text-2xl font-bold mb-5 md:w-full md:max-w-2xl md:text-left">
+            <h2 className=" h-7 text-[#E7E7EB] text-2xl font-bold my-5 md:w-full md:max-w-2xl md:text-left">
                 Today`s Hightlights
             </h2>
 
